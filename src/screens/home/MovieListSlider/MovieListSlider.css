@@ -1,0 +1,15 @@
+#movie-list-slider li {
+  height: 265px !important;
+}
+
+#movie-list-slider li img {
+  width: 100%;
+}
+
+.upcoming {
+  background-color: #ff9999;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  font-size: 1rem;
+}

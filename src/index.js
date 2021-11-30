@@ -4,7 +4,7 @@ import "./index.css";
 import axios from "axios";
 
 import Header from "./common/header/Header";
-import MovieListSlider from "./screens/MovieListSlider/MovieListSlider";
+import Landing from "./screens/home/Landing";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:8085/api/v1";
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <MovieListSlider />
+      <Landing />
     </div>
   );
 }
