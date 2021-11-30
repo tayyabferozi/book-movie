@@ -11,8 +11,6 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import Modal from "react-modal";
-// import Dialog from "@material-ui/core/Dialog";
-// import Modal from "react-modal";
 
 import "./Header.css";
 import logo from "../../assets/logo.svg";
@@ -231,9 +229,9 @@ const Header = () => {
       </Snackbar>
       <img src={logo} className="logo" alt="logo" />
       <div className="actions">
-        <Button variant="contained" color="primary">
+        {/* <Button variant="contained" color="primary">
           BOOK SHOW
-        </Button>
+        </Button> */}
         <Button variant="contained" onClick={openModal}>
           Login
         </Button>
