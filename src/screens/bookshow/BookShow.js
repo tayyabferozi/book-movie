@@ -11,7 +11,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const BookShow = (props) => {
   const [location, setLocation] = useState("");
@@ -32,37 +33,28 @@ const BookShow = (props) => {
   const [showDates, setShowDates] = useState([]);
   const [originalShows, setOriginalShows] = useState([]);
   const [showId, setShowId] = useState("");
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    let dataShows = null;
+    axios.get(`/movies/${params.id}/shows`).then((res) => {
+      setOriginalShows(res.data.shows);
 
-    fetch(props.baseUrl + "movies/" + props.match.params.id + "/shows", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-      },
-      body: dataShows,
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setOriginalShows(response.shows);
+      let newLocations = [];
 
-        let newLocations = [];
+      for (let show of res.data.shows) {
+        newLocations.push({
+          id: show.theatre.city,
+          location: show.theatre.city,
+        });
+      }
 
-        for (let show of response.shows) {
-          newLocations.push({
-            id: show.theatre.city,
-            location: show.theatre.city,
-          });
-        }
-
-        newLocations = newLocations.filter(
-          (loc, index, self) => index === self.findIndex((c) => c.id === loc.id)
-        );
-        setLocations(newLocations);
-      });
-  }, []);
+      newLocations = newLocations.filter(
+        (loc, index, self) => index === self.findIndex((c) => c.id === loc.id)
+      );
+      setLocations(newLocations);
+    });
+  }, [params.id]);
 
   const locationChangeHandler = (event) => {
     setLocation(event.target.value);
@@ -166,28 +158,8 @@ const BookShow = (props) => {
       return;
     }
 
-    props.history.push({
-      pathname: "/confirm/" + props.match.params.id,
-      bookingSummary: {
-        location,
-        theatre,
-        language,
-        showDate,
-        tickets,
-        unitPrice,
-        availableTickets,
-        reqLocation,
-        reqTheatre,
-        reqLanguage,
-        reqShowDate,
-        reqTickets,
-        locations,
-        languages,
-        theatres,
-        showDates,
-        originalShows,
-        showId,
-      },
+    navigate({
+      pathname: `/confirm/${params.id}/${location}/${theatre}/${language}/${showDate}/${tickets}/${unitPrice}/${availableTickets}/${reqLocation}/${reqTheatre}/${reqLanguage}/${reqShowDate}/${reqTickets}/${locations}/${languages}/${theatres}/${showDates}/${originalShows}/${showId}`,
     });
   };
 
@@ -196,9 +168,7 @@ const BookShow = (props) => {
       <Header baseUrl={props.baseUrl} />
       <div className="bookShow">
         <Typography className="back">
-          <Link to={"/movie/" + props.match.params.id}>
-            &#60; Back to Movie Details
-          </Link>
+          <Link to={"/movie/" + params.id}>&#60; Back to Movie Details</Link>
         </Typography>
 
         <Card className="cardStyle">
@@ -285,9 +255,7 @@ const BookShow = (props) => {
             <br />
             <Typography>Unit Price: Rs. {unitPrice}</Typography>
             <br />
-            <Typography>
-              Total Price: Rs. {unitPrice * tickets}
-            </Typography>
+            <Typography>Total Price: Rs. {unitPrice * tickets}</Typography>
             <br />
             <br />
             <Button

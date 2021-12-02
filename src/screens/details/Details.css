@@ -1,0 +1,44 @@
+.details-page {
+  text-align: left;
+}
+
+.back-button {
+  margin-left: 24px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.details-container-flex-view {
+  display: flex;
+}
+
+.details-container-flex-view > div {
+  margin: 0px 16px;
+}
+
+.details-container-flex-view-left {
+  width: 20%;
+  text-align: center;
+}
+
+.details-container-flex-view-middle {
+  width: 60%;
+}
+
+.details-container-flex-view-right {
+  width: 20%;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}

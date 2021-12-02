@@ -1,0 +1,26 @@
+.main-movies {
+  display: flex;
+}
+
+.main-movies > * {
+  margin: 16px;
+}
+
+.main-movies .movies {
+  width: 76%;
+}
+
+.main-movies .filter {
+  width: 24%;
+}
+
+@media screen and (max-width: 989px) {
+  .main-movies {
+    flex-direction: column;
+  }
+
+  .main-movies .movies,
+  .main-movies .filter {
+    width: 100%;
+  }
+}

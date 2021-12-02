@@ -1,3 +1,32 @@
+.topnav {
+  overflow: hidden;
+  background-color: #222;
+  height: 36px;
+  padding: 8px 32px 8px 16px;
+}
+
+.header-logo {
+  background-color: #ff7f7f;
+  height: 35px;
+}
+
+.header-logo-animation {
+  animation: logo-anim 8s infinite linear;
+}
+
+.header-button {
+  float: right;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+
+.bookshow-button {
+  float: right;
+  margin-right: 8px;
+}
+
 #header {
   background-color: #222;
   height: 36px;
