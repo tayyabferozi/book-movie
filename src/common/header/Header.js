@@ -83,7 +83,7 @@ const Header = (props) => {
     })
       .then((res) => {
         sessionStorage.setItem("access-token", res.headers.get("access-token"));
-        console.log(res.ok);
+
         if (!res.ok) {
           return res.text().then((text) => {
             throw new Error(text);

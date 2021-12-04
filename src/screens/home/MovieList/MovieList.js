@@ -24,7 +24,14 @@ const MovieList = (props) => {
                 alt={item.title}
               />
             </Link>
-            <GridListTileBar title={item.title} />
+            <GridListTileBar
+              title={item.title}
+              subtitle={
+                <span>
+                  Release Date: {new Date(item.release_date).toDateString()}
+                </span>
+              }
+            />
           </GridListTile>
         ))}
       </GridList>
